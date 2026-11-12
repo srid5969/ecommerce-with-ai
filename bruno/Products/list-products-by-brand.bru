@@ -1,0 +1,23 @@
+meta {
+  name: List products by brand
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/products?brand=Indomie&limit=50
+  body: none
+  auth: none
+}
+
+params:query {
+  brand: Indomie
+  limit: 50
+}
+
+tests {
+  test("only Indomie products", function () {
+    expect(res.getStatus()).to.equal(200);
+    res.getBody().items.forEach((p) => expect(p.brand).to.equal("Indomie"));
+  });
+}

@@ -1,0 +1,11 @@
+meta {
+  name: Chat
+  seq: 3
+}
+
+docs {
+  `POST /api/chat` streams **Server-Sent Events** (`text/event-stream`).
+  Event order: `status` (search → found → answer) → `thinking`* / `answer`* → `products` → `suggestions` → `done`.
+  On failure an `error` event is sent instead. Needs Ollama running; on CPU a reply can take minutes
+  (set `CHAT_THINK=false` in `.env` to skip the model's reasoning for faster answers).
+}

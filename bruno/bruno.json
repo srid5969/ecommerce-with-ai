@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "ecommerce-with-ai API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "ecommerce-with-ai",
+  "version": "1.0.0",
+  "description": "E-commerce product catalog with vector search and an AI shopping assistant (RAG chat)",
+  "type": "module",
+  "scripts": {
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:psql": "docker exec -it vectorsearch-db psql -U postgres -d vectorsearch",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "seed": "tsx src/scripts/seed.ts",
+    "embeddings:fill": "tsx src/scripts/fill-products-embeddings.ts",
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "web:dev": "pnpm --filter web dev",
+    "web:build": "pnpm --filter web build",
+    "typecheck": "tsc --noEmit -p . && pnpm --filter web typecheck",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.7",
+    "@hono/zod-validator": "^0.9.1",
+    "dotenv": "^18.0.10",
+    "drizzle-orm": "^0.45.4",
+    "hono": "^4.13.18",
+    "ollama": "^0.6.4",
+    "pg": "^8.23.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.6",
+    "@types/pg": "^8.23.1",
+    "drizzle-kit": "^0.31.11",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.2"
+  }
+}

@@ -1,0 +1,23 @@
+meta {
+  name: List products - invalid query
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/products?page=0&limit=500
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 0
+  limit: 500
+}
+
+tests {
+  test("400 VALIDATION_ERROR", function () {
+    expect(res.getStatus()).to.equal(400);
+    expect(res.getBody().error.code).to.equal("VALIDATION_ERROR");
+  });
+}

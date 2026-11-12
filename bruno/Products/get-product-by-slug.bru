@@ -1,0 +1,18 @@
+meta {
+  name: Get product by slug
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/products/{{productSlug}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("returns the product", function () {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody().slug).to.equal(bru.getEnvVar("productSlug"));
+  });
+}

@@ -1,0 +1,29 @@
+meta {
+  name: Follow-up question
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/chat
+  body: json
+  auth: none
+}
+
+headers {
+  accept: text/event-stream
+}
+
+body:json {
+  {
+    "message": "Which of those is spicy?",
+    "history": [
+      { "role": "user", "content": "What Indomie products do you have?" },
+      { "role": "assistant", "content": "We have **Indomie Chicken Pepper Soup**, **Indomie Onion Chicken** and **Indomie Relish Seafood Delight**." }
+    ]
+  }
+}
+
+docs {
+  `history` = previous turns (oldest first) so the assistant understands follow-ups like "those".
+}
